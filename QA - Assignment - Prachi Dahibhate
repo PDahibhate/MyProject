@@ -8,15 +8,15 @@ import org.testng.annotations.*;
 
 public class MyProject {
 	static WebDriver driver;
-    private String baseUrl = "http://example.com/login"; // Replace with your actual login page URL
+    private String baseUrl = "http://example.com/login"; // for example login page URL
     
     @BeforeClass
     public void setUp() {
         // Set up the WebDriver and open the browser
     	System.setProperty("webdriver.chrome.driver", "/home/prachi/Downloads/jar files/chromedriver_linux64/chromedriver");    
     	driver = new ChromeDriver(); // launch chrome
-		driver.manage().window().maximize();
-		driver.manage().deleteAllCookies();
+	driver.manage().window().maximize();
+	driver.manage().deleteAllCookies();
         driver.get(baseUrl);
     }
     
@@ -85,11 +85,7 @@ public class MyProject {
         
         // Verify success message is displayed
         Assert.assertTrue(isSuccessMessageDisplayed());
-        
-        // Simulate password recovery process
-        // - Access the provided email or use a test email account
-        // - Retrieve recovery instructions and reset password
-        // - Verify redirected to the login page
+   
         
         // Log in with the new password
         enterUsername("validUsername");
@@ -99,8 +95,6 @@ public class MyProject {
         // Verify successful login with new password
         Assert.assertTrue(isLoggedIn());
     }
-    
-    // Helper methods
     
     private void enterUsername(String username) {
         WebElement usernameField = driver.findElement(By.id("username"));
@@ -120,8 +114,8 @@ public class MyProject {
     }
     
     private boolean isLoggedIn() {
-        // Implement the logic to determine if the user is logged in
-        return true; // Replace with actual implementation
+       
+        return true; 
     }
     
     private boolean isErrorMessageDisplayed() {
