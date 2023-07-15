@@ -1,146 +1,166 @@
-import time
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
+package myproject;
 
-# Create a WebDriver instance
-driver = webdriver.Chrome()
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 
-# Test Case 1: Verify successful login
-def test_successful_login():
-    # Open the login page
-    driver.get("https://www.example.com/login")
 
-    # Enter valid username and password
-    driver.find_element_by_id("username").send_keys("valid_username")
-    driver.find_element_by_id("password").send_keys("valid_password")
+public class MyProject {
+	static WebDriver driver;
 
-    # Click the Login button
-    driver.find_element_by_id("login-btn").click()
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.chrome.driver", "/home/prachi/Downloads/jar files/chromedriver_linux64/chromedriver");
 
-    # Wait for the system to load and verify successful login
-    WebDriverWait(driver, 10).until(EC.url_contains("dashboard"))
-    assert "Dashboard" in driver.title
-    print("Test case 1 passed: Successful login")
+		driver = new ChromeDriver(); // launch chrome
+		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
 
-# Test Case 2: Verify error message for invalid credentials
-def test_invalid_credentials():
-    # Open the login page
-    driver.get("https://www.example.com/login")
 
-    # Enter invalid username and password
-    driver.find_element_by_id("username").send_keys("invalid_username")
-    driver.find_element_by_id("password").send_keys("invalid_password")
+		driver = webdriver.Chrome(); 	/* Created a WebDriver instance */
 
-    # Click the Login button
-    driver.find_element_by_id("login-btn").click()
+		# Test Case 1: Verify successful login
 
-    # Verify error message is displayed
-    error_message = WebDriverWait(driver, 5).until(EC.visibility_of_element_located((By.CLASS_NAME, "error-message")))
-    assert error_message.text == "Invalid username or password"
-    print("Test case 2 passed: Error message displayed for invalid credentials")
+		def test_successful_login() 
 
-# Test Case 3: Verify retaining entered values after a failed login attempt
-def test_retain_entered_values():
-    # Open the login page
-    driver.get("https://www.example.com/login")
+		driver.get("https://www.example.com/login");/* Open the login page*/
+		System.out.println("Successfully opened the website\n");
+		driver.manage().window().maximize();
+		
+		driver.find_element_by_id("username").send_keys("valid_username");/*Enter valid username and password*/
+		driver.find_element_by_id("password").send_keys("valid_password");
 
-    # Enter invalid username and password
-    driver.find_element_by_id("username").send_keys("invalid_username")
-    driver.find_element_by_id("password").send_keys("invalid_password")
 
-    # Click the Login button
-    driver.find_element_by_id("login-btn").click()
+		driver.find_element_by_id("login-btn").click();	/*  Click the Login button*/
 
-    # Verify that entered values are retained
-    entered_username = driver.find_element_by_id("username").get_attribute("value")
-    entered_password = driver.find_element_by_id("password").get_attribute("value")
-    assert entered_username == "invalid_username"
-    assert entered_password == "invalid_password"
-    print("Test case 3 passed: Entered values retained after failed login attempt")
+		WebDriverWait(driver, 10).until(EC.url_contains("dashboard"));/*  Wait for the system to load and verify successful login*/
+		assert "Dashboard" in driver.title;
+		System.out.println("Test case 1 passed: Successful login");
 
-# Test Case 4: Verify Login button is disabled when both fields are empty
-def test_login_button_disabled():
-    # Open the login page
-    driver.get("https://www.example.com/login")
+		# Test Case 2: Verify error message for invalid credentials
 
-    # Verify Login button is initially disabled
-    login_button = driver.find_element_by_id("login-btn")
-    assert not login_button.is_enabled()
-    print("Test case 4 passed: Login button is disabled when both fields are empty")
+		def test_invalid_credentials();
 
-# Test Case 5: Verify Login button is enabled when both fields are filled with valid input
-def test_login_button_enabled():
-    # Open the login page
-    driver.get("https://www.example.com/login")
+				driver.get("https://www.example.com/login");		/*  Open the login page*/
 
-    # Enter valid username and password
-    driver.find_element_by_id("username").send_keys("valid_username")
-    driver.find_element_by_id("password").send_keys("valid_password")
+				driver.find_element_by_id("username").send_keys("invalid_username");/*  Enter invalid username and password*/
+				driver.find_element_by_id("password").send_keys("invalid_password");
 
-    # Verify Login button is enabled
-    login_button = driver.find_element_by_id("login-btn")
-    assert login_button.is_enabled()
-    print("Test case 5 passed: Login button is enabled when both fields are filled with valid input")
+				driver.find_element_by_id("login-btn").click();/* Click the Login button*/
 
-# Test Case 6: Verify clicking the 'Forgot Password' link redirects to password recovery page
-def test_forgot_password_link():
-    # Open the login page
-    driver.get("https://www.example.com/login")
+				/* Verify error message is displayed*/
+				error_message = WebDriverWait(driver, 5).until(EC.visibility_of_element_located((By.CLASS_NAME, "error-message")))
+						assert error_message.text == "Invalid username or password";
+				System.out.println("Test case 2 passed: Error message displayed for invalid credentials")
 
-    # Click the 'Forgot Password' link
-    driver.find_element_by_link_text("Forgot Password").click()
+				//# Test Case 3: Verify retaining entered values after a failed login attempt
 
-    # Verify user is redirected to password recovery page
-    WebDriverWait(driver, 10).until(EC.url_contains("password-recovery"))
-    assert "Password Recovery" in driver.title
-    print("Test case 6 passed: Clicking 'Forgot Password' link redirects to password recovery page")
+				def test_retain_entered_values():
+					/*  Open the login page*/
+					driver.get("https://www.example.com/login")
+					/*  Enter invalid username and password*/
+					driver.find_element_by_id("username").send_keys("invalid_username")
+					driver.find_element_by_id("password").send_keys("invalid_password")
 
-# Test Case 7: Validate the password recovery functionality
-def test_password_recovery():
-    # Open the login page
-    driver.get("https://www.example.com/login")
+					/*  Click the Login button*/
+					driver.find_element_by_id("login-btn").click()
 
-    # Click the 'Forgot Password' link
-    driver.find_element_by_link_text("Forgot Password").click()
+					/* Verify that entered values are retained*/
+					entered_username = driver.find_element_by_id("username").get_attribute("value")
+					entered_password = driver.find_element_by_id("password").get_attribute("value")
+					assert entered_username == "invalid_username";
+				assert entered_password == "invalid_password";
+				System.out.println("Test case 3 passed: Entered values retained after failed login attempt")
 
-    # Enter a registered email address
-    driver.find_element_by_id("email").send_keys("registered_email@example.com")
+				# Test Case 4: Verify Login button is disabled when both fields are empty
 
-    # Click the 'Recover Password' button
-    driver.find_element_by_id("recover-btn").click()
+				def test_login_button_disabled():
 
-    # Verify success message is displayed
-    success_message = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CLASS_NAME, "success-message")))
-    assert success_message.text == "An email with password recovery instructions has been sent"
-    print("Test case 7a passed: Success message displayed indicating email sent")
+					driver.get("https://www.example.com/login");/*  Open the login page*/
 
-    # Simulate password recovery process (not automated in this script)
-    print("Test case 7b-f: Password recovery process should be manually validated")
 
-    # Verify user is redirected to login page after successful password reset
-    WebDriverWait(driver, 10).until(EC.url_contains("login"))
-    assert "Login" in driver.title
-    print("Test case 7g passed: User redirected to login page after successful password reset")
+				login_button = driver.find_element_by_id("login-btn");/* Verify Login button is initially disabled*/
+				assert not login_button.is_enabled();
+				System.out.println("Test case 4 passed: Login button is disabled when both fields are empty");
 
-    # Verify user can log in with the new password
-    driver.find_element_by_id("username").send_keys("valid_username")
-    driver.find_element_by_id("password").send_keys("new_password")
-    driver.find_element_by_id("login-btn").click()
-    WebDriverWait(driver, 10).until(EC.url_contains("dashboard"))
-    assert "Dashboard" in driver.title
-    print("Test case 7h passed: User can log in with the new password")
+				# Test Case 5: Verify Login button is enabled when both fields are filled with valid input
 
-# Execute the test cases
-test_successful_login()
-test_invalid_credentials()
-test_retain_entered_values()
-test_login_button_disabled()
-test_login_button_enabled()
-test_forgot_password_link()
-test_password_recovery()
+				def test_login_button_enabled():
 
-# Close the browser
-driver.quit()
+					driver.get("https://www.example.com/login");/* Open the login page*/
+
+
+				driver.find_element_by_id("username").send_keys("valid_username");/*  Enter valid username and password*/
+				driver.find_element_by_id("password").send_keys("valid_password");
+
+
+				login_button = driver.find_element_by_id("login-btn");	/* Verify Login button is enabled*/
+				assert login_button.is_enabled()
+				System.out.println("Test case 5 passed: Login button is enabled when both fields are filled with valid input");
+
+				# Test Case 6: Verify clicking the 'Forgot Password' link redirects to password recovery page
+
+				def test_forgot_password_link():
+
+					driver.get("https://www.example.com/login");	/* Open the login page*/
+
+
+					driver.find_element_by_link_text("Forgot Password").click()	;/* Click the 'Forgot Password' link*/
+
+				# Verify user is redirected to password recovery page
+				WebDriverWait(driver, 10).until(EC.url_contains("password-recovery"));
+				assert "Password Recovery" in driver.title;
+				System.out.println("Test case 6 passed: Clicking 'Forgot Password' link redirects to password recovery page")
+
+				# Test Case 7: Validate the password recovery functionality
+
+				def test_password_recovery():
+
+				driver.get("https://www.example.com/login");	/* Open the login page*/
+
+				driver.find_element_by_link_text("Forgot Password").click();
+				/* Click the 'Forgot Password' link*/
+
+
+				driver.find_element_by_id("email").send_keys("registered_email@example.com");/*  Enter a registered email address*/
+
+				driver.find_element_by_id("recover-btn").click();/*  Click the 'Recover Password' button*/
+
+
+				success_message = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CLASS_NAME, "success-message")));	/*  Verify success message is displayed*/
+				assert success_message.text == "An email with password recovery instructions has been sent";
+				System.out.println("Test case 7a passed: Success message displayed indicating email sent");
+
+
+				System.out.println("Test case 7b-f: Password recovery process should be manually validated");/*  Simulate password recovery process (not automated in this script)*/
+
+
+				WebDriverWait(driver, 10).until(EC.url_contains("login"));/* Verify user is redirected to login page after successful password reset*/
+				assert "Login" in driver.title;
+				System.out.println("Test case 7g passed: User redirected to login page after successful password reset");
+
+
+				driver.find_element_by_id("username").send_keys("valid_username");/* Verify user can log in with the new password*/
+				driver.find_element_by_id("password").send_keys("new_password");
+				driver.find_element_by_id("login-btn").click();
+				WebDriverWait(driver, 10).until(EC.url_contains("dashboard"));
+				assert "Dashboard" in driver.title;
+				System.out.println("Test case 7h passed: User can log in with the new password");
+
+
+				test_successful_login();/* Execute the test cases*/
+				test_invalid_credentials();
+				test_retain_entered_values();
+				test_login_button_disabled();
+				test_login_button_enabled();
+				test_forgot_password_link();
+				test_password_recovery();
+
+
+				driver.quit();/* Close the browser*/
+
+	}}
